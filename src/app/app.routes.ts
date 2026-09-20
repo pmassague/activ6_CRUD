@@ -7,9 +7,9 @@ import { P404Page } from './pages/p404/p404.page';
 export const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'home' },
   { path: 'home', component: HomePage },
-  { path: 'user/:idUser', component: UserViewPage },
+  { path: 'user/:_id', component: UserViewPage },
   { path: 'newuser', component: UserFormPage },
-  { path: 'updateuser/:idUser', component: UserFormPage },
+  { path: 'updateuser/:_id', component: UserFormPage },
 
   { path: '**', component: P404Page }
 ];

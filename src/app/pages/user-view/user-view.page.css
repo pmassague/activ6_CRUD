@@ -1,0 +1,19 @@
+.layout-detalle {
+  max-width: 750px;
+}
+
+.contenedor-botones {
+  justify-content: flex-start; 
+}
+
+@media (max-width: 767.98px) {
+  .contenedor-botones {
+    justify-content: center;
+  }
+}
+
+@media (min-width: 768px) {
+  .border-end-md {
+    border-right: 2px solid #dee2e6;
+  }
+}

@@ -1,1 +1,47 @@
-<p>user-view works!</p>
+<section class="container mt-4">
+  @if(!user()){
+  <p>Cargando.....</p>
+  }@else{
+      <article class="card shadow-sm p-4 border-1 bg-white rounded mx-auto layout-detalle">
+      <div class="row align-items-center">
+        
+        <div class="col-md-5 d-flex justify-content-center border-end-md pb-3 pb-md-0">
+          <img 
+            [src]="user()?.image" 
+            class="rounded-circle img-fluid shadow-sm object-fit-cover" 
+            style="width: 180px; height: 180px;"
+          >
+        </div>
+
+        <div class="col-md-7 ps-md-4 text-center text-md-start">
+          <h2 class="fw-bold text-dark mb-1">{{ user()?.first_name }}</h2>
+          <h3 class="text-muted fw-semibold mb-3 fs-4">{{ user()?.last_name }}</h3>
+          
+          <div class="user-meta-info">
+            <p class="mb-1 text-secondary">
+              <strong class="text-dark">Nombre de usuario:</strong> {{ user()?.username }}
+            </p>
+            <p class="mb-0 text-secondary">
+              <strong class="text-dark">Email:</strong> {{ user()?.email }}
+            </p>
+          </div>
+
+          <div class="d-flex flex-wrap gap-2 pt-2 mt-2 contenedor-botones">
+              <button (click)="eliminarUsuario()" class="btn btn-sm btn-danger px-3">
+              Eliminar
+              </button>
+              <button [routerLink]="['/updateuser', user()?._id]" class="btn btn-sm btn-warning px-3 text-dark fw-medium">
+              Actualizar
+              </button>
+              <button [routerLink]="['/home']" class="btn btn-sm btn-primary text-white px-3 border-0">
+              Volver al listado
+              </button>
+           </div>
+        </div>
+      </div>
+
+
+  </article>
+  }
+</section>
+

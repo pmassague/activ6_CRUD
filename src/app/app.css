@@ -1,0 +1,3 @@
+.navbar-nav .nav-link.active {
+  color: #dc3545 !important; /* Rojo (puedes usar 'red' o cualquier código HEX) */
+}
