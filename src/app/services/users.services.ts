@@ -17,7 +17,22 @@ export class UsersServices {
     // borrar usuario
     deleteById(_id: string | undefined) {
       return firstValueFrom(this.httpClient.delete<IUser>(`${this.baseUrl}/${_id}`))
-  }
+    }
+
+
+    //crear usuario
+    createUser(user: IUser) {
+      const resultado = firstValueFrom(this.httpClient.post<IUser>(this.baseUrl, user))
+      //console.log(resultado)
+      return resultado
+    }
+
+    //actualizar usuario
+    updateUser(idUser: string, user: IUser) {
+      const { _id, id, username, password, ...resto } = user
+      return firstValueFrom(this.httpClient.put<IUser>(`${this.baseUrl}/${idUser}`, resto))
+    }    
 
 }
+
 
