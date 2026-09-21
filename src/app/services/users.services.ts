@@ -10,6 +10,7 @@ export class UsersServices {
 
     apiResponse = httpResource<IResponse>(() => this.baseUrl)
 
+    // get by id
     getById(_id: string) {
       return firstValueFrom(this.httpClient.get<IUser>(`${this.baseUrl}/${_id}`))
     }
@@ -19,12 +20,9 @@ export class UsersServices {
       return firstValueFrom(this.httpClient.delete<IUser>(`${this.baseUrl}/${_id}`))
     }
 
-
     //crear usuario
     createUser(user: IUser) {
-      const resultado = firstValueFrom(this.httpClient.post<IUser>(this.baseUrl, user))
-      //console.log(resultado)
-      return resultado
+      return firstValueFrom(this.httpClient.post<IUser>(this.baseUrl, user))
     }
 
     //actualizar usuario

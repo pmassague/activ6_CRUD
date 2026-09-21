@@ -20,40 +20,34 @@
 
   <div class="row g-2 justify-content-center">
   
-  <!-- Botón Ver Detalle -->
   <div class="col-4">
     <button 
       [routerLink]="['/user', myUser()?._id]" 
       class="btn btn-sm w-100 d-flex flex-column align-items-center py-2 btn-custom-action"
       title="Ver detalles"
     >
-      <!-- Icono  -->
       <i class="bi bi-search mb-1 fs-5 text-dark"></i>
       <span class="btn-text-xs">Ver detalle</span>
     </button>
   </div>
 
-  <!-- Botón Actualizar -->
   <div class="col-4">
     <button 
       [routerLink]="['/updateuser', myUser()?._id]" 
       class="btn btn-sm w-100 d-flex flex-column align-items-center py-2 btn-custom-action"
       title="Actualizar usuario"
     >
-      <!-- Icono -->
       <i class="bi bi-arrow-repeat mb-1 fs-5 text-dark"></i>
       <span class="btn-text-xs">Actualizar</span>
     </button>
   </div>
 
-  <!-- Botón Borrar-->
   <div class="col-4">
     <button
       class="btn btn-sm w-100 d-flex flex-column align-items-center py-2 btn-custom-action"
       title="Borrar usuario"
       (click)="onDelete(myUser()?._id)"
     >
-      <!-- Icono -->
       <i class="bi bi-trash mb-1 fs-5 text-dark"></i>
       <span class="btn-text-xs">Borrar</span>
     </button>
