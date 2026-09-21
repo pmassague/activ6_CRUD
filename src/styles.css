@@ -8,8 +8,3 @@
 body{
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
-
-.navbar-nav .nav-link.opcionActiva {
-  color: tomato !important; /* ¡Fuerza el color tomato! */
-  font-weight: bold !important; /* Opcional: para resaltar el texto */
-}

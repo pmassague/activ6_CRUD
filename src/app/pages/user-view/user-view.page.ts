@@ -18,6 +18,7 @@ export class UserViewPage {
     this.cargarInfo()
   }
 
+  //Carga los detalles del usuario
   async cargarInfo() {
     try {
       const response = await this.usersServices.getById(this._id())
@@ -27,6 +28,7 @@ export class UserViewPage {
     }
   }
 
+  //Borra el usuario
   async eliminarUsuario(_id: string | undefined) {
     try {
       const respuesta = await this.usersServices.deleteById(_id);
@@ -39,6 +41,5 @@ export class UserViewPage {
     }
   }
 
-  }
-
+}
 
