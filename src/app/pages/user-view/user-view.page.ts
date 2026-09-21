@@ -2,6 +2,7 @@ import { Component, inject, input, signal } from '@angular/core';
 import { UsersServices } from '../../services/users.services';
 import { IUser } from '../../interfaces/iuser.interface';
 import { RouterLink } from '@angular/router';
+import Swal from 'sweetalert2';
 
 @Component({
   imports: [RouterLink],
@@ -30,16 +31,35 @@ export class UserViewPage {
 
   //Borra el usuario
   async eliminarUsuario(_id: string | undefined) {
-    try {
-      const respuesta = await this.usersServices.deleteById(_id);
-      if (respuesta._id) {
-        alert('Usuario borrado correctamente')
-        this.usersServices.apiResponse.reload()
+      const resultado = await Swal.fire({
+      title: '¿Estás seguro de borrar el usuario?',
+      text: "¡Esta operación no se puede revertir!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Aceptar',
+      cancelButtonText: 'Cancelar'
+    });
+
+    if (resultado.isConfirmed) {
+      try {
+        const respuesta = await this.usersServices.deleteById(_id);
+        if (respuesta._id) {
+          Swal.fire(
+            '¡Borrado!',
+            'El usuario ha sido borrado correctamente.',
+            'success'
+          );
+          this.usersServices.apiResponse.reload();
+        }
+      } catch (error) {
+        Swal.fire(
+          'Error',
+          'No se pudo borrar el usuario.',
+          'error'
+        );
       }
-    } catch (error) {
-      console.log(error)
     }
-  }
-
 }
-
+}

@@ -3,6 +3,7 @@ import { UsersServices } from '../../services/users.services';
 import { Router } from '@angular/router';
 import { IUser } from '../../interfaces/iuser.interface';
 import { form, FormField, minLength, pattern, required} from '@angular/forms/signals';
+import Swal from 'sweetalert2';
 
 
 @Component({
@@ -38,7 +39,7 @@ export class UserFormPage {
 
       // validadores de email
       required(form.email, { message: "El campo email es obligatorio" })
-      pattern(form.email, /^\w+\@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/, { message: "Introduce un email con formato válido" })
+      pattern(form.email, /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/, { message: "Introduce un email con formato válido" })
 
       // validadores de url de imagen
       required(form.image, { message: "El campo image es obligatorio" })
@@ -67,19 +68,36 @@ export class UserFormPage {
         //Actualizar
       const response = await this.usersService.updateUser(id, this.userForm().value())
       if (response.username) {
-        alert(`El usuario ${response.first_name} ha sido modificado correctamente`)
+            Swal.fire({
+            title: '¡Buen trabajo!',
+            text: `El usuario ${response.first_name} ha sido modificado correctamente`,
+            icon: 'success',
+            confirmButtonColor: '#007bff' 
+            });
       } else {
-        alert('Ha ocurrido un problema no se ha podido actualizar el usuario')
-      }
+            Swal.fire({
+            icon: 'error',
+            title: '¡Ha ocurrido un problema!',
+            text: 'No se pudo actualizar el usuario.',
+            });
+        }
 
       } else {
         //Crear usuario
         const response = await this.usersService.createUser(this.userForm().value())
-        console.log(response)
         if (response.id) {
-          alert(`El usuario ${response.first_name} ha sido creado correctamente`)
+            Swal.fire({
+            title: '¡Buen trabajo!',
+            text: `El usuario ${response.first_name} ha sido creado correctamente`,
+            icon: 'success',
+            confirmButtonColor: '#007bff' 
+            });
         } else {
-            alert('Ha ocurrido un problema. No se ha podido registrar el usuario')
+            Swal.fire({
+            icon: 'error',
+            title: '¡Ha ocurrido un problema!',
+            text: 'No se pudo registrar el usuario.',
+            });
         }
       }
       //router navigate para cambiar de pagina
@@ -93,6 +111,5 @@ export class UserFormPage {
 
 
     }
-
 
 }
