@@ -27,7 +27,7 @@
       class="btn btn-sm w-100 d-flex flex-column align-items-center py-2 btn-custom-action"
       title="Ver detalles"
     >
-      <!-- Icono -->
+      <!-- Icono  -->
       <i class="bi bi-search mb-1 fs-5 text-dark"></i>
       <span class="btn-text-xs">Ver detalle</span>
     </button>
@@ -48,9 +48,10 @@
 
   <!-- Botón Borrar-->
   <div class="col-4">
-    <button 
+    <button
       class="btn btn-sm w-100 d-flex flex-column align-items-center py-2 btn-custom-action"
       title="Borrar usuario"
+      (click)="onDelete(myUser()?._id)"
     >
       <!-- Icono -->
       <i class="bi bi-trash mb-1 fs-5 text-dark"></i>

@@ -6,7 +6,7 @@
   justify-content: flex-start; 
 }
 
-@media (max-width: 767.98px) {
+@media (max-width: 767.99px) {
   .contenedor-botones {
     justify-content: center;
   }

@@ -14,5 +14,10 @@ export class UsersServices {
       return firstValueFrom(this.httpClient.get<IUser>(`${this.baseUrl}/${_id}`))
     }
 
+    // borrar usuario
+    deleteById(_id: string | undefined) {
+      return firstValueFrom(this.httpClient.delete<IUser>(`${this.baseUrl}/${_id}`))
+  }
+
 }
 
