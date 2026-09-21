@@ -10,7 +10,7 @@ import { RouterLink } from '@angular/router';
   templateUrl: './user-view.page.html',
 })
 export class UserViewPage {
-  userServices = inject(UsersServices)
+  usersServices = inject(UsersServices)
   _id = input.required<string>()
   user = signal<IUser | null>(null)
 
@@ -20,15 +20,25 @@ export class UserViewPage {
 
   async cargarInfo() {
     try {
-      const response = await this.userServices.getById(this._id())
+      const response = await this.usersServices.getById(this._id())
       this.user.set(response)
     } catch (error) {
       console.log(error)
     }
   }
 
-  eliminarUsuario(){
+  async eliminarUsuario(_id: string | undefined) {
+    try {
+      const respuesta = await this.usersServices.deleteById(_id);
+      if (respuesta._id) {
+        alert('Usuario borrado correctamente')
+        this.usersServices.apiResponse.reload()
+      }
+    } catch (error) {
+      console.log(error)
+    }
+  }
 
   }
 
-}
+
