@@ -2,7 +2,7 @@ import { Component, inject, input, signal } from '@angular/core';
 import { UsersServices } from '../../services/users.services';
 import { Router } from '@angular/router';
 import { IUser } from '../../interfaces/iuser.interface';
-import { form, FormField} from '@angular/forms/signals';
+import { form, FormField, minLength, pattern, required} from '@angular/forms/signals';
 
 
 @Component({
@@ -28,7 +28,21 @@ export class UserFormPage {
     })
 
     readonly userForm = form(this.userModel, (form) => {
-      //validadores
+      // validadores de nombre
+      required(form.first_name, { message: "El nombre es obligatorio" });
+      minLength(form.first_name, 3, { message: "El nombre debe tener al menos 3 caracteres." })
+
+      // validadores de apellido
+      required(form.last_name, { message: "El apellido es obligatorio" });
+      minLength(form.last_name, 3, { message: "El apellido debe tener al menos 3 caracteres." })
+
+      // validadores de email
+      required(form.email, { message: "El campo email es obligatorio" })
+      pattern(form.email, /^\w+\@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/, { message: "Introduce un email con formato válido" })
+
+      // validadores de url de imagen
+      required(form.image, { message: "El campo image es obligatorio" })
+      pattern(form.image, /^(https?:\/\/)?([\da-z.-]+)\.([a-z.]{2,6})([\/\w .?=@-]*)*\/?$/, { message: "Introduce una url con formato válido" })
     })
 
     async ngOnInit() {
